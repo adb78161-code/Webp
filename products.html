@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - My Business Store</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Header -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        <i class="fa-solid fa-store"></i>
+        My Business
+    </a>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<!-- Page Title -->
+
+<section class="page-title">
+
+    <h1>Our Products</h1>
+
+    <p>Choose your favorite product</p>
+
+</section>
+
+<!-- Search -->
+
+<section class="search-section">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search Products..."
+    >
+
+</section>
+
+<!-- Products -->
+
+<section class="products">
+
+    <!-- Product 1 -->
+
+    <div class="card">
+
+        <img src="images/product1.jpg" alt="Wireless Mouse">
+
+        <h3>Wireless Mouse</h3>
+
+        <p class="price">₹499</p>
+
+        <p>⭐⭐⭐⭐☆ (4.8)</p>
+
+        <div class="buttons">
+
+            <button
+                class="buy"
+                onclick="addToCart(1)">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Add to Cart
+            </button>
+
+            <button
+                class="whatsapp"
+                onclick="addToWishlist(1)">
+                <i class="fa-solid fa-heart"></i>
+                Wishlist
+            </button>
+
+            <a
+                class="buy"
+                href="https://your-product-link.com"
+                target="_blank">
+                Buy Now
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Product 2 -->
+
+    <div class="card">
+
+        <img src="images/product2.jpg" alt="Gaming Keyboard">
+
+        <h3>Gaming Keyboard</h3>
+
+        <p class="price">₹1999</p>
+
+        <p>⭐⭐⭐⭐⭐ (4.9)</p>
+
+        <div class="buttons">
+
+            <button
+                class="buy"
+                onclick="addToCart(2)">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Add to Cart
+            </button>
+
+            <button
+                class="whatsapp"
+                onclick="addToWishlist(2)">
+                <i class="fa-solid fa-heart"></i>
+                Wishlist
+            </button>
+
+            <a
+                class="buy"
+                href="https://your-product-link.com"
+                target="_blank">
+                Buy Now
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Product 3 -->
+
+    <div class="card">
+
+        <img src="images/product3.jpg" alt="Bluetooth Speaker">
+
+        <h3>Bluetooth Speaker</h3>
+
+        <p class="price">₹1499</p>
+
+        <p>⭐⭐⭐⭐⭐ (4.9)</p>
+
+        <div class="buttons">
+
+            <button
+                class="buy"
+                onclick="addToCart(3)">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Add to Cart
+            </button>
+
+            <button
+                class="whatsapp"
+                onclick="addToWishlist(3)">
+                <i class="fa-solid fa-heart"></i>
+                Wishlist
+            </button>
+
+            <a
+                class="buy"
+                href="https://your-product-link.com"
+                target="_blank">
+                Buy Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+
+    <h2>My Business Store</h2>
+
+    <p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

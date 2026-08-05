@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<a href="index.html" class="logo">
+
+<i class="fa-solid fa-store"></i>
+
+My Business
+
+</a>
+
+<nav class="navbar">
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="wishlist.html">Wishlist</a>
+
+</nav>
+
+</header>
+
+<!-- ================= TITLE ================= -->
+
+<section class="page-title">
+
+<h1>Checkout</h1>
+
+<p>Complete your order</p>
+
+</section>
+
+<!-- ================= CHECKOUT ================= -->
+
+<section class="checkout-container">
+
+<form id="checkout-form">
+
+<h2>Billing Details</h2>
+
+<input
+type="text"
+placeholder="Full Name"
+required>
+
+<input
+type="email"
+placeholder="Email Address"
+required>
+
+<input
+type="tel"
+placeholder="Phone Number"
+required>
+
+<textarea
+placeholder="Shipping Address"
+rows="5"
+required></textarea>
+
+<h2>Payment Method</h2>
+
+<label>
+
+<input
+type="radio"
+name="payment"
+value="COD"
+checked>
+
+Cash On Delivery
+
+</label>
+
+<br><br>
+
+<label>
+
+<input
+type="radio"
+name="payment"
+value="UPI">
+
+UPI
+
+</label>
+
+<br><br>
+
+<label>
+
+<input
+type="radio"
+name="payment"
+value="Card">
+
+Debit / Credit Card
+
+</label>
+
+<br><br>
+
+<h2>Order Summary</h2>
+
+<div id="order-summary">
+
+<!-- Products appear here -->
+
+</div>
+
+<h2>
+
+Grand Total :
+<span id="grand-total">
+
+₹0
+
+</span>
+
+</h2>
+
+<button
+type="submit"
+class="btn">
+
+Place Order
+
+</button>
+
+</form>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>My Business Store</h2>
+
+<p>Secure Checkout</p>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<script>
+
+const cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const summary =
+document.getElementById("order-summary");
+
+const total =
+document.getElementById("grand-total");
+
+let grand=0;
+
+cart.forEach(item=>{
+
+summary.innerHTML += `
+
+<div style="
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+">
+
+<span>${item.name}</span>
+
+<span>₹${item.price}</span>
+
+</div>
+
+`;
+
+grand += item.price;
+
+});
+
+total.innerHTML="₹"+grand;
+
+document
+.getElementById("checkout-form")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("🎉 Order Placed Successfully!");
+
+localStorage.removeItem("cart");
+
+window.location.href="index.html";
+
+});
+
+</script>
+
+</body>
+</html>

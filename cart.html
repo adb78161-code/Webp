@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Shopping Cart</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<a href="index.html" class="logo">
+
+<i class="fa-solid fa-store"></i>
+
+My Business
+
+</a>
+
+<nav class="navbar">
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="wishlist.html">Wishlist</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</header>
+
+<!-- ================= CART TITLE ================= -->
+
+<section class="page-title">
+
+<h1>Shopping Cart</h1>
+
+<p>Your selected products</p>
+
+</section>
+
+<!-- ================= CART TABLE ================= -->
+
+<section class="cart-container">
+
+<table class="cart-table">
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+
+<th>Price</th>
+
+<th>Quantity</th>
+
+<th>Total</th>
+
+<th>Remove</th>
+
+</tr>
+
+</thead>
+
+<tbody id="cart-items">
+
+<!-- JavaScript will insert products -->
+
+</tbody>
+
+</table>
+
+</section>
+
+<!-- ================= TOTAL ================= -->
+
+<section class="cart-summary">
+
+<h2>
+
+Grand Total :
+
+<span id="grand-total">
+
+₹0
+
+</span>
+
+</h2>
+
+<a
+href="checkout.html"
+class="btn">
+
+Proceed To Checkout
+
+</a>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>My Business Store</h2>
+
+<p>Thank you for shopping with us ❤️</p>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartItems =
+document.getElementById("cart-items");
+
+const grandTotal =
+document.getElementById("grand-total");
+
+function loadCart(){
+
+cartItems.innerHTML="";
+
+let total=0;
+
+cart.forEach((item,index)=>{
+
+const quantity=1;
+
+const row=`
+
+<tr>
+
+<td>${item.name}</td>
+
+<td>₹${item.price}</td>
+
+<td>${quantity}</td>
+
+<td>₹${item.price*quantity}</td>
+
+<td>
+
+<button onclick="removeItem(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+cartItems.innerHTML+=row;
+
+total+=item.price;
+
+});
+
+grandTotal.innerHTML="₹"+total;
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem(
+
+"cart",
+
+JSON.stringify(cart)
+
+);
+
+loadCart();
+
+}
+
+loadCart();
+
+</script>
+
+</body>
+
+</html>

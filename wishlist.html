@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Wishlist</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<a href="index.html" class="logo">
+
+<i class="fa-solid fa-store"></i>
+
+My Business
+
+</a>
+
+<nav class="navbar">
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</header>
+
+<!-- ================= TITLE ================= -->
+
+<section class="page-title">
+
+<h1>My Wishlist ❤️</h1>
+
+<p>Your favourite products</p>
+
+</section>
+
+<!-- ================= WISHLIST ================= -->
+
+<section class="products" id="wishlist-container">
+
+<!-- Products will be loaded here -->
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>My Business Store</h2>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<script>
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const container =
+document.getElementById("wishlist-container");
+
+function loadWishlist(){
+
+container.innerHTML="";
+
+if(wishlist.length===0){
+
+container.innerHTML="<h2 style='text-align:center;'>Your wishlist is empty ❤️</h2>";
+
+return;
+
+}
+
+wishlist.forEach((item,index)=>{
+
+container.innerHTML += `
+
+<div class="card">
+
+<img src="${item.image}" alt="${item.name}">
+
+<h3>${item.name}</h3>
+
+<p class="price">₹${item.price}</p>
+
+<p>⭐ ${item.rating}</p>
+
+<div class="buttons">
+
+<button
+class="buy"
+onclick="moveToCart(${index})">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+Move To Cart
+
+</button>
+
+<a
+class="buy"
+href="https://your-product-link.com"
+target="_blank">
+
+Buy Now
+
+</a>
+
+<button
+class="whatsapp"
+onclick="removeItem(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function removeItem(index){
+
+wishlist.splice(index,1);
+
+localStorage.setItem(
+
+"wishlist",
+
+JSON.stringify(wishlist)
+
+);
+
+loadWishlist();
+
+}
+
+function moveToCart(index){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push(wishlist[index]);
+
+localStorage.setItem(
+
+"cart",
+
+JSON.stringify(cart)
+
+);
+
+wishlist.splice(index,1);
+
+localStorage.setItem(
+
+"wishlist",
+
+JSON.stringify(wishlist)
+
+);
+
+alert("Product moved to cart.");
+
+loadWishlist();
+
+}
+
+loadWishlist();
+
+</script>
+
+</body>
+
+</html>
