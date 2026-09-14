@@ -1,187 +1,215 @@
-// =====================================
-// MY BUSINESS STORE
-// app.js
-// =====================================
+// ===============================
+// MY BUSINESS STORE - APP.JS
+// ===============================
 
-// -----------------------------
-// PRODUCT DATA
-// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
 
-const products = [
+    // -------------------------------
+    // ELEMENTS
+    // -------------------------------
 
-{
-    id:1,
-    name:"Wireless Mouse",
-    price:499,
-    image:"images/product1.jpg",
-    rating:4.8,
-    category:"Accessories"
-},
+    const searchBtn = document.getElementById("search-btn");
+    const wishlistBtn = document.getElementById("wishlist-btn");
+    const cartBtn = document.getElementById("cart-btn");
+    const loginBtn = document.getElementById("login-btn");
+    const themeBtn = document.getElementById("theme-btn");
 
-{
-    id:2,
-    name:"Gaming Keyboard",
-    price:1999,
-    image:"images/product2.jpg",
-    rating:4.7,
-    category:"Gaming"
-},
+    const searchInput = document.getElementById("search");
 
-{
-    id:3,
-    name:"Bluetooth Speaker",
-    price:1499,
-    image:"images/product3.jpg",
-    rating:4.9,
-    category:"Electronics"
-}
 
-];
+    // -------------------------------
+    // SEARCH
+    // -------------------------------
 
-// -----------------------------
-// SEARCH
-// -----------------------------
+    if (searchBtn) {
 
-const searchInput = document.getElementById("search");
+        searchBtn.addEventListener("click", () => {
 
-if(searchInput){
+            if (searchInput) {
 
-searchInput.addEventListener("keyup",function(){
+                searchInput.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
 
-const value = this.value.toLowerCase();
+                searchInput.focus();
 
-const cards = document.querySelectorAll(".card");
+            }
 
-cards.forEach(card=>{
+        });
 
-const title = card.querySelector("h3").textContent.toLowerCase();
+    }
 
-if(title.includes(value)){
 
-card.style.display="block";
+    // -------------------------------
+    // WISHLIST
+    // -------------------------------
 
-}else{
+    if (wishlistBtn) {
 
-card.style.display="none";
+        wishlistBtn.addEventListener("click", () => {
 
-}
+            alert("❤️ Wishlist opened!");
+
+            window.location.href = "wishlist.html";
+
+        });
+
+    }
+
+
+    // -------------------------------
+    // CART
+    // -------------------------------
+
+    if (cartBtn) {
+
+        cartBtn.addEventListener("click", () => {
+
+            window.location.href = "cart.html";
+
+        });
+
+    }
+
+
+    // -------------------------------
+    // LOGIN
+    // -------------------------------
+
+    if (loginBtn) {
+
+        loginBtn.addEventListener("click", () => {
+
+            window.location.href = "login.html";
+
+        });
+
+    }
+
+
+    // -------------------------------
+    // DARK MODE
+    // -------------------------------
+
+    if (themeBtn) {
+
+        themeBtn.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark-mode");
+
+            if (
+                document.body.classList.contains("dark-mode")
+            ) {
+
+                themeBtn.classList.remove(
+                    "fa-moon"
+                );
+
+                themeBtn.classList.add(
+                    "fa-sun"
+                );
+
+                localStorage.setItem(
+                    "theme",
+                    "dark"
+                );
+
+            } else {
+
+                themeBtn.classList.remove(
+                    "fa-sun"
+                );
+
+                themeBtn.classList.add(
+                    "fa-moon"
+                );
+
+                localStorage.setItem(
+                    "theme",
+                    "light"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    // -------------------------------
+    // LOAD SAVED THEME
+    // -------------------------------
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+        if (themeBtn) {
+
+            themeBtn.classList.remove(
+                "fa-moon"
+            );
+
+            themeBtn.classList.add(
+                "fa-sun"
+            );
+
+        }
+
+    }
+
+
+    // -------------------------------
+    // PRODUCT SEARCH
+    // -------------------------------
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            () => {
+
+                const searchText =
+                    searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+                const products =
+                    document.querySelectorAll(
+                        ".product-card"
+                    );
+
+                products.forEach(product => {
+
+                    const text =
+                        product.textContent
+                        .toLowerCase();
+
+                    if (
+                        text.includes(searchText)
+                    ) {
+
+                        product.style.display =
+                            "";
+
+                    } else {
+
+                        product.style.display =
+                            "none";
+
+                    }
+
+                });
+
+            }
+        );
+
+    }
 
 });
-
-});
-
-}
-
-// -----------------------------
-// DARK MODE
-// -----------------------------
-
-const themeBtn = document.getElementById("theme-btn");
-
-if(themeBtn){
-
-themeBtn.onclick=()=>{
-
-document.body.classList.toggle("dark");
-
-localStorage.setItem(
-"theme",
-document.body.classList.contains("dark")
-);
-
-};
-
-}
-
-if(localStorage.getItem("theme")=="true"){
-
-document.body.classList.add("dark");
-
-}
-
-// -----------------------------
-// CART
-// -----------------------------
-
-let cart=[];
-
-function addToCart(id){
-
-const product = products.find(p=>p.id===id);
-
-cart.push(product);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-alert(product.name+" added to cart.");
-
-}
-
-// -----------------------------
-// WISHLIST
-// -----------------------------
-
-let wishlist=[];
-
-function addToWishlist(id){
-
-const product=products.find(p=>p.id===id);
-
-wishlist.push(product);
-
-localStorage.setItem(
-"wishlist",
-JSON.stringify(wishlist)
-);
-
-alert(product.name+" added to wishlist.");
-
-}
-
-// -----------------------------
-// SCROLL TOP
-// -----------------------------
-
-const topBtn=document.createElement("button");
-
-topBtn.innerHTML="↑";
-
-topBtn.className="top-button";
-
-document.body.appendChild(topBtn);
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>300){
-
-topBtn.style.display="block";
-
-}else{
-
-topBtn.style.display="none";
-
-}
-
-});
-
-topBtn.onclick=()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-};
-
-// -----------------------------
-// LOADING
-// -----------------------------
-
-window.onload=()=>{
-
-console.log("Welcome to My Business Store");
-
-};
