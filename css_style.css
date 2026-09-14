@@ -277,3 +277,32 @@ body{
     box-shadow:var(--shadow);
 
 }
+.icons i {
+    position: relative;
+}
+
+.product-card {
+    transition: .25s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.add-cart {
+    font-family: inherit;
+}
+
+#store-message {
+    animation: pop .25s ease;
+}
+
+@keyframes pop {
+    from {
+        transform:translateX(-50%) scale(.8);
+    }
+
+    to {
+        transform:translateX(-50%) scale(1);
+    }
+}
