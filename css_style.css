@@ -3,7 +3,41 @@
 ===================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* ===============================
+   DARK MODE
+================================ */
 
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .header {
+    background: #1b1b1b;
+}
+
+body.dark-mode a {
+    color: #ffffff;
+}
+
+body.dark-mode .hero {
+    background: #181818;
+}
+
+body.dark-mode .search-section {
+    background: #121212;
+}
+
+body.dark-mode input {
+    background: #222;
+    color: white;
+    border-color: #555;
+}
+
+body.dark-mode .product-card {
+    background: #1e1e1e;
+    color: white;
+}
 /* =====================================
    RESET
 ===================================== */
